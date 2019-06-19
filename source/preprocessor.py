@@ -41,31 +41,33 @@ class NLPPreprocessor:
         return text
     
     # ---- count words ----
-    def count_words(self, text, update = True):
+    def count_words(self, text, vocab_size, update = True):
         
         if update == False:
             
             self.counter = Counter()
             
         self.counter.update(text)
+
+        if len(self.counter) > 2 * vocab_size:
+
+            self.counter = Counter(dict(self.counter.most_common(vocab_size - 1)))
     
     # ---- build volcabulary ----
-    def build_vocab(self, size):
+    def build_vocab(self, vocab_size):
 
-        dictionary = dict()
+        self.counter = dict(self.counter.most_common(vocab_size - 1))
 
-        count = [('UNK', -1)]
-
-        count.extend(self.counter.most_common(size - 1))
+        self.counter["UNK"] = -1
 
         idx = 0
 
-        for word, _ in count:
+        for word in self.counter.keys():
 
-            dictionary[word] = idx
+            self.counter[word] = idx
             idx += 1
 
-        return dictionary
+        return self.counter
     
     # ---- convert words to index ----
     def word_to_index(self, words, dictionary):

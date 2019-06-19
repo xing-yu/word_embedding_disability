@@ -3,11 +3,18 @@
 # build dictionary
 # convert into index to word
 
+#python3 ./source/file_preprocess.py /home/yu64/Documents/IdentificationProjectNeo/data/posts_comments.txt ./result/idx2words.txt ./dic/dic.json 400000000
+
+#python3 ./source/file_preprocess.py /Users/Xing/jupyter_notebook_server/word2vec/data/comments.txt ./result/idx2words.txt ./dic/dic.json 400000000
+
 import sys
 sys.path.append('.')
 from preprocessor import *
 from collections import Counter
 import json
+from nltk.stem import PorterStemmer
+from nltk.corpus import stopwords
+stop_words = set(stopwords.words("english"))
 
 INFILE = sys.argv[1]
 OUTFILE = sys.argv[2]
@@ -25,6 +32,7 @@ def main(infile, outfile, vocab_size, dic_file):
 def preprocess(infile, vocab_size, dic_file):
 
     prep = NLPPreprocessor()
+    ps = PorterStemmer()
 
     fin = open(infile, 'r')
 
@@ -33,11 +41,14 @@ def preprocess(infile, vocab_size, dic_file):
         text = prep.remove_contracts(text)
         text = prep.remove_puncts(text)
         words = text.lower().split()
-        prep.count_words(words)
+        words = [ps.stem(w) for w in words if w not in stop_words]
+
+        prep.count_words(words, vocab_size)
 
     fin.close()
 
     # build dictionary
+
     dic = prep.build_vocab(vocab_size)
 
     # save dictionary
@@ -52,6 +63,7 @@ def preprocess(infile, vocab_size, dic_file):
 def index_to_words(infile, outfile, dic):
 
     prep = NLPPreprocessor()
+    ps = PorterStemmer()
 
     fin = open(infile, 'r')
 
@@ -61,6 +73,7 @@ def index_to_words(infile, outfile, dic):
         text = prep.remove_contracts(text)
         text = prep.remove_puncts(text)
         words = text.lower().split()
+        words = [ps.stem(w) for w in words if w not in stop_words]
         id_words = prep.word_to_index(words, dic)
 
         for v in id_words:
