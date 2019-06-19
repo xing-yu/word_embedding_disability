@@ -1,0 +1,1 @@
+python3 ./source/file_preprocess.py /Users/Xing/jupyter_notebook_server/word2vec/data/comments.txt ./result/idx2words.txt ./dic/dic.json 100
