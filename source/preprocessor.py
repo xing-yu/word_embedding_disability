@@ -20,7 +20,7 @@ class NLPPreprocessor:
             if punct in text:
 
                 # keep/separate
-                text = text.replace(punct, f' {punct} ')
+                # text = text.replace(punct, f' {punct} ')
 
                 # remove
                 text = text.replace(punct, '')
