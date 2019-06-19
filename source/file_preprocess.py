@@ -41,7 +41,7 @@ def preprocess(infile, vocab_size, dic_file):
         text = prep.remove_contracts(text)
         text = prep.remove_puncts(text)
         words = text.lower().split()
-        words = [ps.stem(w) for w in words if w not in stop_words]
+        words = [ps.stem(w) for w in words if w not in stop_words and len(w) < 20]
 
         prep.count_words(words, vocab_size)
 
@@ -73,7 +73,7 @@ def index_to_words(infile, outfile, dic):
         text = prep.remove_contracts(text)
         text = prep.remove_puncts(text)
         words = text.lower().split()
-        words = [ps.stem(w) for w in words if w not in stop_words]
+        words = [ps.stem(w) for w in words if w not in stop_words and len(w) < 20]
         id_words = prep.word_to_index(words, dic)
 
         for v in id_words:
