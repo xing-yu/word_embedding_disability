@@ -23,7 +23,7 @@ class NLPPreprocessor:
                 # text = text.replace(punct, f' {punct} ')
 
                 # remove
-                text = text.replace(punct, '')
+                text = text.replace(punct, ' ')
 
         return text
     
