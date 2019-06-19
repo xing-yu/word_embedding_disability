@@ -1,1 +1,1 @@
-python3 ./source/file_preprocess.py /Users/Xing/jupyter_notebook_server/word2vec/data/comments.txt ./result/idx2words.txt ./dic/dic.json 100
+python3 ./source/file_preprocess.py /home/yu64/Documents/IdentificationProjectNeo/data/posts_comments.txt ./result/idx2words.txt ./dic/dic.json 400000000
