@@ -58,6 +58,7 @@ def preprocess(infile, vocab_size, dic_file):
 
         json.dump(dic, fout)
 
+    print("The size of dictionary is " + str(len(dic)))
 
     return dic
 
@@ -74,7 +75,7 @@ def index_to_words(infile, outfile, dic):
     for text in fin:
 
         if text == [removed]:continue
-        
+
         text = prep.remove_contracts(text)
         text = prep.remove_puncts(text)
         words = text.lower().split()
