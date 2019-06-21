@@ -38,7 +38,7 @@ def preprocess(infile, vocab_size, dic_file):
 
     for text in fin:
         
-        if text == [removed]:continue
+        if text == "[removed]": continue
 
         text = prep.remove_contracts(text)
         text = prep.remove_puncts(text)
@@ -74,7 +74,7 @@ def index_to_words(infile, outfile, dic):
 
     for text in fin:
 
-        if text == [removed]:continue
+        if text == "[removed]": continue
 
         text = prep.remove_contracts(text)
         text = prep.remove_puncts(text)
