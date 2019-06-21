@@ -1,1 +1,1 @@
-python3 ./source/file_preprocess.py /home/yu64/Documents/IdentificationProjectNeo/data/posts_comments.txt ./result/idx2words.txt ./dic/dic.json 400000000
+python3 ./source/file_preprocess.py /home/yu64/Documents/word_embedding_disability/result/raw.txt ./result/idx2words.txt ./dic/dic.json 400000000
