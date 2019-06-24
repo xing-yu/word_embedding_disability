@@ -15,7 +15,7 @@ class SkipGramModel:
                  transfer = False, 
                  pretrain = None):
         
-        
+        self.gen = gen
         self.vocab_size = vocab_size
         self.batch_size = batch_size
         self.embed_size = embed_size
@@ -26,7 +26,7 @@ class SkipGramModel:
 
     
     def _import_data(self):
-        self.dataset = tf.data.Dataset.from_generator(gen, (tf.int32, tf.int32), (tf.TensorShape([self.batch_size]), tf.TensorShape([self.batch_size, 1])))
+        self.dataset = tf.data.Dataset.from_generator(self.gen, (tf.int32, tf.int32), (tf.TensorShape([self.batch_size]), tf.TensorShape([self.batch_size, 1])))
         
         self.iterator = self.dataset.make_initializable_iterator()
 
