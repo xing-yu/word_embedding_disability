@@ -5,6 +5,7 @@ import json
 from nltk.stem import PorterStemmer
 import tensorflow as tf
 import numpy as np
+from matplotlib import pyplot as plt
 
 dictionary_file = sys.argv[1]
 index_to_words_file = sys.argv[2]
@@ -68,6 +69,7 @@ def main(dictionary_file,
     plt.ylabel("Loss")
     plt.savefig("loss.png", dpi = 150)
 
+    print("Saving embeddings...")
     # save embedding matrix
     np.savetxt(output_file, output)
 
