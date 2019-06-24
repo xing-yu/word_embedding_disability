@@ -74,7 +74,7 @@ class SkipGramModel:
     
     def _create_optimizer(self):
         
-        self.optimizer = tf.train.AdamOptimizer(self.learning_rate).minimize(self.loss)
+        self.optimizer = tf.train.GradientDescentOptimizer(self.learning_rate).minimize(self.loss)
         
     def build_graph(self):
         self._import_data()
