@@ -135,11 +135,12 @@ def train(model, num_train_steps, path_to_checkpoints):
     step_history = []
 
     # set session configration for multi cpu and threads
-    config = tf.ConfigProto(device_count = {"CPU": 1})
-    config.intra_op_parallelism_threads = 4
-    config.inter_op_parallelism_threads = 1
+    # config = tf.ConfigProto(device_count = {"CPU": 1})
+    # config.intra_op_parallelism_threads = 4
+    # config.inter_op_parallelism_threads = 1
     
-    with tf.Session(config = config) as sess:
+    #with tf.Session(config = config) as sess:
+    with tf.Session() as sess:
         
         # initialize data and variables
         sess.run(model.iterator.initializer)
