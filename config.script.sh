@@ -23,5 +23,5 @@ module load ccm
 module load anaconda3
 source activate word2vec
 cd /N/u/yu64/BigRed2/word_embedding_disability
-ccmrun python3 ./source/word2vec.py ./data/dic.json embedding.txt pretrains_100d.txt 512 5 100 32 ./checkpoints 10000
+ccmrun python3 ./source/word2vec.py ./data/dic.json embedding.txt pretrains_100d.txt 128 5 100 32 ./checkpoints 10000
 source deactivate
