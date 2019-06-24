@@ -36,20 +36,31 @@ def main(dictionary_file,
 
     vocab_size = len(vocab)
 
+    print("Loading vocabulary done.")
+    print(str(vocab_size) + " tokens in the vocabulary.")
+
     # load pretrained matrix
     pretrained = np.loadtxt(pretrained_embed_file)
 
+    print("Loading pretrained matrix done.")
+
     # initialize generator for batches
-    gen = batch_gen(index_to_words_file, vocab_size, batch_size, window_size)
+    def gen():
+        yield from batch_gen(index_to_words_file, vocab_size, batch_size, window_size)
 
     # initialize model
     model = SkipGramModel(gen, vocab_size = vocab_size, batch_size = batch_size, embed_size = embed_size, num_sampled = num_sampled, transfer = True, pretrain = pretrained)
 
     model.build_graph()
 
+    print("Model initialized...")
+
+    print("Start training...")
     # train model
     step_history, loss_history, output = train(model, num_train_steps, path_to_checkpoints)
 
+    print("Finished training...")
+    print("Saving results...")
     # save loss plot
     plt.title("Loss Function")
     plt.plot(step_history, loss_history)
