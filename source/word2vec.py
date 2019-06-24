@@ -153,7 +153,7 @@ def train(model, num_train_steps, path_to_checkpoints):
 
                     print("Loss at step {}: {:.3f}".format(index + 1, total_loss))
                     
-                    saver.save(sess, './checkpoints/word2vec', global_step = index + 1)
+                    saver.save(sess, path_to_checkpoints + '/word2vec', global_step = index + 1)
                     
                     loss_history.append(total_loss)
                     step_history.append(index)
